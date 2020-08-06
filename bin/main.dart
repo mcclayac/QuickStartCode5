@@ -12,9 +12,85 @@ void main(List<String> arguments) {
   // Abstract Classes
   code5_1();
   code5_2();
+  code5_3();
+  code5_4();
+
+
 
   
 
+}
+//----------------------------------------------
+//----------------------------------------------
+class OrderDetails {
+  void UpdateCustomers(){
+  }
+  void TakeOrder(){
+  }
+}
+class ItemDetails implements OrderDetails{
+  void UpdateCustomers(){
+    //implementing interface members
+    print("Updating customers.");
+  }
+  void TakeOrder(){
+    //implementing interface members
+    print("Taking orders from customers.");
+  }
+}
+
+void code5_4() {
+  print("----------------------------------------------");
+  print("----------------------------------------------");
+  print("Code 5.4");
+  print("");
+  var book = ItemDetails();
+  book.TakeOrder();
+  book.UpdateCustomers();
+}
+//----------------------------------------------
+//----------------------------------------------
+//code 5.3
+// interface in Dart is a class, but we don't extend,
+// we implement it
+class Vehicle {
+  void steerTheVehicle() {
+    print("The vehicle is moving.");
+  }
+}
+class Engine {
+  //in the interface
+  final _name; // final means single assignment and it must have an initializer as I use here
+  //not in the interface, since it is a constructor
+  Engine(this._name);
+  String lessOilConsumption(){
+    return "It consumes less oil.";
+  }
+}
+
+class Car implements Vehicle, Engine{
+  var _name;
+  void steerTheVehicle() {
+    print("The car is moving.");
+  }
+  String lessOilConsumption(){
+    print("This model of car consumes less oil.");
+  }
+  void ridingExperience() => print("This car gives good ride, because it is an ${this._name}");
+}
+
+void code5_3() {
+  print("----------------------------------------------");
+  print("----------------------------------------------");
+  print("Code 5.3");
+  print("");
+
+  var car = Car();
+  car._name = "Opel";
+  print("Car name: ${car._name}");
+  car.steerTheVehicle();
+  car.lessOilConsumption();
+  car.ridingExperience();
 }
 //----------------------------------------------
 //----------------------------------------------
@@ -27,13 +103,17 @@ abstract class Mammal {
   }
 }
 class Human implements Mammal {
+  @override
   void run(){
     print("I am running.");
   }
+  @override
   void walk(){
     print("I am walking");
   }
-  void sound(){
+
+  void sound() {
+
     print("Humans make sound");
   }
 }
